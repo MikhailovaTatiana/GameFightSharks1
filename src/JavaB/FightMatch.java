@@ -1,36 +1,28 @@
 package JavaB;
 
-import java.io.IOException;
-import java.util.Random;
-
 public class FightMatch {
 
-    private static int fightMatch (int a, int b) {
+    Skills whiteShark;
+    Skills blackShark;
+    private int times;
 
-        while (a > 0 && b > 0) {
-            Random rnd = new Random();
-            int x = rnd.nextInt(10) + 1;
-            a -= x;
-            System.out.println("You have: " + a);
-            int y = rnd.nextInt(10) + 1;
-            b -= y;
-            System.out.println("Your opponent has: " + b);
-        }
-        if (a > 0) {
-            return a;
-        } else
-            return b;
+    int upgrade;
+
+    public FightMatch(Skills whiteShark, Skills blackShark) {
+        this.whiteShark = whiteShark;
+        this.blackShark = blackShark;
     }
 
-    public void winner() throws IOException {
-        Weapon w = new Weapon();
-        w.weaponSelect();
-        int life = fightMatch (50 + w.upgrade, 50);
-        if (life > 0) {
-            System.out.println("You have totally " + life);
-        }
-        else {
-            System.out.println("You have gone...");
+    public void fight() {
+        System.out.println("Whiteshark has life " + whiteShark.life);
+        times = 5;
+        System.out.println("White Shark: " + whiteShark.id + " has life " + whiteShark.life);
+        System.out.println("Black Shark: " + blackShark.id + " has life " + blackShark.life);
+        for (int i = 0; i < times; i++) {
+            whiteShark.life = whiteShark.life + whiteShark.strength + upgrade - blackShark.power;
+            System.out.println("White Shark: " + whiteShark.id + " has life " + whiteShark.life);
+            blackShark.life = blackShark.life + blackShark.strength - whiteShark.power;
+            System.out.println("Black Shark: " + blackShark.id + " has life " + blackShark.life);
         }
     }
 }
