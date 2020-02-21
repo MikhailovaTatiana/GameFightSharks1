@@ -1,26 +1,33 @@
 package JavaB;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
 
         TeamNumbers teamNumbers = new TeamNumbers();
         teamNumbers.start();
+        //ändra till getter
+        int num = teamNumbers.numbers;
 
         Figures figures = new Figures();
+        figures.numberShark = num;
         figures.selectWhiteSharks();
-        Skills whiteShark = figures.whiteShark();
         figures.selectBlackSharks();
-        Skills blackShark = figures.blackShark();
+        Skills wShark = figures.whiteShark;
+        Skills bShark = figures.blackShark;
 
         Weapon weapon = new Weapon();
-        weapon.numberWeapon = figures.numberShark;
+        weapon.numberWeapon = num;
         weapon.weaponList();
+        int upgr = weapon.upgradeWeapon;
 
-        FightMatch fightMatch = new FightMatch(whiteShark, blackShark);
+        FightMatch fightMatch = new FightMatch(wShark, bShark, upgr);
         fightMatch.fight();
 
+        scanner.close();
     }
 }

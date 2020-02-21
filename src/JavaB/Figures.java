@@ -1,25 +1,26 @@
 package JavaB;
+
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Figures {
 
-    public int numberShark;
+    int numberShark;
 
-    public int idShark;
-    public int lifeRandom;
-    public int powerRandom;
-    public int strengthRandom;
+    int idShark;
+    int lifeRandom;
+    int powerRandom;
+    int strengthRandom;
 
-    public int opponent;
-
-    Skills whiteShark;
-    Skills blackShark;
+    int opponent;
+    ArrayList<Skills> whiteSharks;
+    ArrayList<Skills> blackSharks;
+    public Skills whiteShark;
+    public Skills blackShark;
 
     public void selectWhiteSharks() {
         System.out.println("WHITE SHARKS TEAM:");
-        ArrayList<Skills> whiteSharks = new ArrayList<Skills>(numberShark);
+        whiteSharks = new ArrayList<Skills>(numberShark);
             for (int i = 0; i < numberShark; i++) {
                 random();
                 idShark = i + 1;
@@ -27,12 +28,14 @@ public class Figures {
                 whiteSharks.add(i, whiteShark);
                 System.out.println("White Shark "+whiteShark.id+": life "+whiteShark.life+", power "+whiteShark.power+", strength "+whiteShark.strength);
             }
-    //    whiteSharks.remove(opponent);
+        selectOpponent();
+        whiteShark = whiteSharks.get(opponent);
+        System.out.println("You have chosen: White Shark " + whiteShark.id);
     }
 
     public void selectBlackSharks() {
         System.out.println("\nBLACK SHARK TEAM:");
-        ArrayList<Skills> blackSharks = new ArrayList<>(numberShark);
+        blackSharks = new ArrayList<Skills>(numberShark);
             for (int i = 0; i < numberShark; i++) {
                 random();
                 idShark = i + 1;
@@ -40,7 +43,9 @@ public class Figures {
                 blackSharks.add(i, blackShark);
                 System.out.println("Black Shark "+blackShark.id+": life "+blackShark.life+", power "+blackShark.power+", strength "+blackShark.strength);
             }
-        //    blackSharks.remove(opponent);
+        selectOpponent();
+        blackShark = blackSharks.get(opponent);
+        System.out.println("You have chosen: Black Shark " + blackShark.id);
     }
 
     private void random() {
@@ -50,23 +55,10 @@ public class Figures {
         strengthRandom = random.nextInt(5) + 1;
     }
 
-    public Skills whiteShark() {
-        selectOpponent();
-        whiteShark = selectWhiteSharks().get(opponent);
-        return whiteShark;
-    }
-
-    public Skills blackShark() {
-        selectOpponent();
-        blackShark = selectWhiteSharks().get(opponent);
-        return blackShark;
-    }
-
-    private int selectOpponent() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\nChoose (with number) one SHARK from the list");
-        opponent = sc.nextInt() - 1;
-        sc.close();
+    int selectOpponent() {
+        System.out.println("\nChoose (with number) one SHARK from the list: ");
+        opponent  = Main.scanner.nextInt() - 1;
+        Main.scanner.nextLine();
         return opponent;
     }
 }
