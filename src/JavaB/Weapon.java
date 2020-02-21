@@ -4,15 +4,24 @@ import java.util.ArrayList;
 
 public class Weapon {
 
-    public int numberWeapon;
-    public int upgradeWeapon;
+    private int numberWeapon;
+    private int upgradeWeapon;
 
     private int idWeapon;
     private String nameWeapon;
     private int weaponInput;
 
-    ArrayList<Skills> weapons;
-    Skills weapon;
+    private ArrayList<Skills> weapons;
+    private Skills weapon;
+
+    public void setNumberWeapon(int numberWeapon) {
+        this.numberWeapon = numberWeapon;
+    }
+
+    public int getUpgradeWeapon () {
+        return upgradeWeapon;
+    }
+
 
     public void weaponList() {
         System.out.println("\nWEAPON LIST:");

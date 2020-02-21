@@ -10,20 +10,19 @@ public class Main {
 
         TeamNumbers teamNumbers = new TeamNumbers();
         teamNumbers.start();
-        //ändra till getter
-        int num = teamNumbers.numbers;
+        int num = teamNumbers.getNumbers();
 
         Figures figures = new Figures();
-        figures.numberShark = num;
+        figures.setNumberShark(num);
         figures.selectWhiteShark();
         figures.selectBlackShark();
         Skills wShark = figures.whiteShark;
         Skills bShark = figures.blackShark;
 
         Weapon weapon = new Weapon();
-        weapon.numberWeapon = num;
+        weapon.setNumberWeapon(num);
         weapon.weaponList();
-        int upgr = weapon.upgradeWeapon;
+        int upgr = weapon.getUpgradeWeapon();
 
         FightRound fightMatch = new FightRound(wShark, bShark, upgr);
         fightMatch.fight();

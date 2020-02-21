@@ -1,9 +1,12 @@
 package JavaB;
 
-import java.util.Scanner;
-
 public class TeamNumbers {
-    public int numbers;
+
+    private int numbers;
+
+    int getNumbers() {
+        return numbers;
+    }
 
     public int start() {
 

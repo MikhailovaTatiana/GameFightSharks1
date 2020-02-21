@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Figures {
 
-    int numberShark;
+    private int numberShark;
 
     int idShark;
     int lifeRandom;
@@ -17,8 +17,12 @@ public class Figures {
     public Skills whiteShark;
     public Skills blackShark;
 
+    public void setNumberShark(int numberShark) {
+        this.numberShark = numberShark;
+    }
+
     public void selectTeam() {
-        sharksList = new ArrayList<Skills>(numberShark);
+        sharksList = new ArrayList<>(numberShark);
             for (int i = 0; i < numberShark; i++) {
                 random();
                 idShark = i + 1;
@@ -43,21 +47,6 @@ public class Figures {
         blackShark = sharksList.get(opponent);
         System.out.println("You have chosen: Black Shark " + blackShark.id);
     }
-
-  /*  public void selectBlackSharks() {
-        System.out.println("\nBLACK SHARK TEAM:");
-        blackSharks = new ArrayList<Skills>(numberShark);
-            for (int i = 0; i < numberShark; i++) {
-                random();
-                idShark = i + 1;
-                blackShark = new Skills(idShark, lifeRandom, powerRandom, strengthRandom);
-                blackSharks.add(i, blackShark);
-                System.out.println("Black Shark "+blackShark.id+": life "+blackShark.life+", power "+blackShark.power+", strength "+blackShark.strength);
-            }
-        selectOpponent();
-        blackShark = blackSharks.get(opponent);
-        System.out.println("You have chosen: Black Shark " + blackShark.id);
-    } */
 
     private void random() {
         Random random = new Random();
