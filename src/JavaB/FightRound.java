@@ -1,12 +1,12 @@
 package JavaB;
 
-public class FightMatch {
+public class FightRound {
 
     Skills whiteShark;
     Skills blackShark;
     int upgrade;
 
-    public FightMatch(Skills whiteShark, Skills blackShark, int upgrade) {
+    public FightRound(Skills whiteShark, Skills blackShark, int upgrade) {
         this.whiteShark = whiteShark;
         this.blackShark = blackShark;
         this.upgrade = upgrade;

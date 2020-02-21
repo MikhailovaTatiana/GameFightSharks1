@@ -2,7 +2,7 @@ package JavaB;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FightMatchTest {
+class FightRoundTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {

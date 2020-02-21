@@ -15,8 +15,8 @@ public class Main {
 
         Figures figures = new Figures();
         figures.numberShark = num;
-        figures.selectWhiteSharks();
-        figures.selectBlackSharks();
+        figures.selectWhiteShark();
+        figures.selectBlackShark();
         Skills wShark = figures.whiteShark;
         Skills bShark = figures.blackShark;
 
@@ -25,7 +25,7 @@ public class Main {
         weapon.weaponList();
         int upgr = weapon.upgradeWeapon;
 
-        FightMatch fightMatch = new FightMatch(wShark, bShark, upgr);
+        FightRound fightMatch = new FightRound(wShark, bShark, upgr);
         fightMatch.fight();
 
         scanner.close();
