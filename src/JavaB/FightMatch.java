@@ -5,7 +5,6 @@ public class FightMatch {
     Skills whiteShark;
     Skills blackShark;
     int upgrade;
-    private int times;
 
     public FightMatch(Skills whiteShark, Skills blackShark, int upgrade) {
         this.whiteShark = whiteShark;
@@ -14,10 +13,9 @@ public class FightMatch {
     }
 
     public void fight() {
-        times = 6;
         System.out.println("White Shark " + whiteShark.id + " has life " + whiteShark.life);
         System.out.println("Black Shark " + blackShark.id + " has life " + (blackShark.life - upgrade) + " now");
-        for (int i = 0; i < times; i++) {
+        while (whiteShark.life > 0 && blackShark.life > 0) {
             System.out.println("\nStrike!");
             whiteShark.life = whiteShark.life + whiteShark.strength - blackShark.power;
             System.out.println("White Shark " + whiteShark.id + " has life " + whiteShark.life);
