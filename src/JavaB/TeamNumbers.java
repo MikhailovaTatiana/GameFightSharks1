@@ -16,7 +16,7 @@ public class TeamNumbers {
             if (numbers == 0) {
                 System.out.println("EXIT");
             } else if (numbers >= 3 && numbers <= 5) {
-                System.out.println("The game starts...\n");
+                System.out.println("The game starts...");
             } else {
                 System.out.println("Wrong choice! Try again!");
                 start();

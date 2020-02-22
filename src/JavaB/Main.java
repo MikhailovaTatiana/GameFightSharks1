@@ -14,8 +14,7 @@ public class Main {
 
         Figures figures = new Figures();
         figures.setNumberShark(num);
-        figures.selectWhiteShark();
-        figures.selectBlackShark();
+        figures.match();
         Skills wShark = figures.whiteShark;
         Skills bShark = figures.blackShark;
 
@@ -26,6 +25,15 @@ public class Main {
 
         FightRound fightMatch = new FightRound(wShark, bShark, upgr);
         fightMatch.fight();
+
+        for (int i = 0; i < num-1; i++) {
+            figures.white();
+            figures.black();
+            wShark = figures.whiteShark;
+            bShark = figures.blackShark;
+            FightRound fightMatchRest = new FightRound(wShark, bShark, upgr);
+            fightMatchRest.fight();
+        }
 
         scanner.close();
     }
