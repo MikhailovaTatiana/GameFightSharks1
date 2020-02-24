@@ -2,9 +2,10 @@ package JavaB;
 
 public class Skills {
 
-    int id;
-    int life, power, strength;
-    String name; int upgrade;
+    public int id;
+    public int life, power, strength;
+    public String name;
+    public int upgrade;
 
     public Skills (int id, int life, int power, int strength) {
         this.id = id;
@@ -18,5 +19,4 @@ public class Skills {
         this.name = name;
         this.upgrade = upgrade;
     }
-
 }

@@ -18,15 +18,14 @@ public class Weapon {
         this.numberWeapon = numberWeapon;
     }
 
-    public int getUpgradeWeapon () {
+    public int getUpgradeWeapon() {
         return upgradeWeapon;
     }
 
-
     public void weaponList() {
-        System.out.println("\nWEAPON LIST:");
+        System.out.println("WEAPON LIST:");
         weapons = new ArrayList<>(numberWeapon);
-        String name[] = {"sand", "stone", "arbalest", "chopper", "grenade"};
+        String[] name = {"sand", "stone", "arbalest", "chopper", "grenade"};
             for (int i = 0; i < numberWeapon; i++) {
                 idWeapon = i+1;
                 nameWeapon = name[i];
@@ -40,11 +39,10 @@ public class Weapon {
         upgradeWeapon = weapons.get(weaponInput).upgrade;
     }
 
-    private int weaponSelect() {
+    private void weaponSelect() {
         System.out.println("\nChoose (with number) one weapon from the list");
         weaponInput = Main.scanner.nextInt() - 1;
         Main.scanner.nextLine();
-        return weaponInput;
     }
 }
 

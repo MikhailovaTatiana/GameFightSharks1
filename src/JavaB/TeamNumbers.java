@@ -4,11 +4,11 @@ public class TeamNumbers {
 
     private int numbers;
 
-    int getNumbers() {
+    public int getNumbers() {
         return numbers;
     }
 
-    public int start() {
+    public void start() {
 
         System.out.println("\nSelect numbers of members in each team: 3, 4, 5 or 0 (close)");
             numbers = Main.scanner.nextInt();
@@ -21,6 +21,5 @@ public class TeamNumbers {
                 System.out.println("Wrong choice! Try again!");
                 start();
             }
-        return numbers;
     }
 }
