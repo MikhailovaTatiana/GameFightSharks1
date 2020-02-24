@@ -51,36 +51,39 @@ public class Figures {
     public void match() {
         selectTeam();
         whiteTeam = sharksList;
+        int upgr1 = Weapon.weaponSelect();
+
+
         white();
+
         selectTeam();
         blackTeam = sharksList;
+        int upgr2 = Weapon.weaponSelect();
         black();
     }
 
     public void white() {
         System.out.println("\nWHITE SHARKS TEAM:");
         int x = 1;
-        for (Skills rest : whiteTeam) {
-            System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + x + ")");
-            x++;
-        }
+            for (Skills rest : whiteTeam) {
+                System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + x + ")");
+                x++;
+            }
         selectOpponent();
         whiteShark = whiteTeam.get(opponent);
-        System.out.println("You have chosen: White Shark " + whiteShark.id);
-        // whiteTeam.remove(opponent);
+        System.out.println("You have chosen: White Shark " + whiteShark.id + "\n");
     }
 
     public void black() {
         System.out.println("\nBLACK SHARKS TEAM:");
         int y = 1;
-        for (Skills rest : blackTeam) {
-            System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
-            y++;
-        }
+            for (Skills rest : blackTeam) {
+                System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
+                y++;
+            }
         selectOpponent();
         blackShark = blackTeam.get(opponent);
         System.out.println("You have chosen: Black Shark " + blackShark.id + "\n");
-        // blackTeam.remove(opponent);
     }
 
     private void random() {
@@ -97,7 +100,6 @@ public class Figures {
     }
 
     public void sharkLosers() {
-
         if(whiteShark.life <= 0) {
             whiteTeam.remove(opponent);
         }

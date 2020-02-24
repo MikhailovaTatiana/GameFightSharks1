@@ -1,48 +1,33 @@
 package JavaB;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Weapon {
 
-    private int numberWeapon;
-    private int upgradeWeapon;
+    private static String[] name = new String[] {"sand", "stone", "arbalest", "chopper", "grenade"};
+    private static List<Skills> weapons = weaponList();
 
-    private int idWeapon;
-    private String nameWeapon;
-    private int weaponInput;
+    private Weapon() {}
 
-    private ArrayList<Skills> weapons;
-    private Skills weapon;
-
-    public void setNumberWeapon(int numberWeapon) {
-        this.numberWeapon = numberWeapon;
-    }
-
-    public int getUpgradeWeapon() {
-        return upgradeWeapon;
-    }
-
-    public void weaponList() {
-        System.out.println("WEAPON LIST:");
-        weapons = new ArrayList<>(numberWeapon);
-        String[] name = {"sand", "stone", "arbalest", "chopper", "grenade"};
-            for (int i = 0; i < numberWeapon; i++) {
-                idWeapon = i+1;
-                nameWeapon = name[i];
-                upgradeWeapon = i * 3 + 2;
-                weapon = new Skills(idWeapon, nameWeapon, upgradeWeapon);
+    private static List<Skills> weaponList() {
+        weapons = new ArrayList<>();
+            for (int i = 0; i < name.length; i++) {
+                String nameWeapon = name[i];
+                int upgradeWeapon = i * 3 + 2;
+                Skills weapon = new Skills(nameWeapon, upgradeWeapon);
                 weapons.add(i, weapon);
-                System.out.println("Weapon " + weapon.id + ": \"" + weapon.name + "\" strikes " + weapon.upgrade);
             }
-        weaponSelect();
-        System.out.println("You have chosen the " + weapons.get(weaponInput).name + "\n");
-        upgradeWeapon = weapons.get(weaponInput).upgrade;
+        return weapons;
     }
 
-    private void weaponSelect() {
-        System.out.println("\nChoose (with number) one weapon from the list");
-        weaponInput = Main.scanner.nextInt() - 1;
-        Main.scanner.nextLine();
+    public static int weaponSelect() {
+        Random w = new Random();
+        int weaponRandom = w.nextInt(name.length);
+        System.out.println("The shark has got the " + weapons.get(weaponRandom).name + " (+" + weapons.get(weaponRandom).upgrade + ") to the first fight\n");
+         int upgradeWeapon = weapons.get(weaponRandom).upgrade;
+        return upgradeWeapon;
     }
 }
 

@@ -14,8 +14,7 @@ public class Skills {
         this.strength = strength;
     }
 
-    public Skills (int id, String name, int upgrade) {
-        this.id = id;
+    public Skills (String name, int upgrade) {
         this.name = name;
         this.upgrade = upgrade;
     }
