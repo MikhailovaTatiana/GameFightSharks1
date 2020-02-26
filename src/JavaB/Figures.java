@@ -84,7 +84,7 @@ public class Figures {
     private void random() {
         Random random = new Random();
         lifeRandom = random.nextInt(50) + 100;
-        powerRandom = random.nextInt(15) + 5;
+        powerRandom = random.nextInt(15) + 10;
         strengthRandom = random.nextInt(5) + 1;
     }
 
@@ -94,11 +94,11 @@ public class Figures {
         Main.scanner.nextLine();
     }
 
-    public void sharkLosers() {
-        if(whiteShark.life <= 0) {
+    public void removeLoser() {
+        if (whiteShark.life <= 0) {
             whiteTeam.remove(opponent);
         }
-        if(blackShark.life <= 0) {
+        if (blackShark.life <= 0) {
             blackTeam.remove(opponent);
         }
     }

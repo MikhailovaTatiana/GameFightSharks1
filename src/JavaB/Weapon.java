@@ -30,8 +30,6 @@ public class Weapon {
     public static int weaponSelect() {
         Random w = new Random();
         weaponRandom = w.nextInt(name.length);
-        //System.out.println("The shark has got the " + weapons.get(weaponRandom).name +
-                //" (+" + weapons.get(weaponRandom).upgrade + ") to the power in the first fight\n");
         int upgradeWeapon = weapons.get(weaponRandom).upgrade;
         return upgradeWeapon;
     }

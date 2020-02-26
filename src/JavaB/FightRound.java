@@ -18,15 +18,15 @@ public class FightRound {
         System.out.println("White Shark " + whiteShark.id + " has life " + (whiteShark.life - upgrade2) + " now");
         System.out.println("Black Shark " + blackShark.id + " has life " + (blackShark.life - upgrade1) + " now");
             for (int i = 0; i < 5; i++) {
+                if (whiteShark.life <= 0 || blackShark.life <= 0) {
+                    break;
+                }
                 System.out.println("\nStrike!");
                 whiteShark.life = whiteShark.life + whiteShark.strength - blackShark.power;
                 System.out.println("White Shark " + whiteShark.id + " has life " + whiteShark.life);
                 blackShark.life = blackShark.life + blackShark.strength - whiteShark.power;
                 System.out.print("Black Shark " + blackShark.id + " has life " + blackShark.life);
                 Main.scanner.nextLine();
-                if (whiteShark.life <= 0 || blackShark.life <= 0) {
-                    break;
-                }
             }
     }
 }
