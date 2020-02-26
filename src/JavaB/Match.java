@@ -5,13 +5,17 @@ public class Match {
     public Match() {
 
         TeamNumbers teamNumbers = new TeamNumbers();
-        teamNumbers.start();
+        teamNumbers.selectNambers();
 
         Figures figures = new Figures();
         figures.setNumberShark(teamNumbers.getNumbers());
-        figures.match();
+        figures.matchStart();
+        int whiteWeapon = Weapon.weaponSelect();
+        System.out.println("The White Shark has got the " + Weapon.getName() + " (+" + whiteWeapon + " to its power in the first fight)\n");
+        int blackWeapon = Weapon.weaponSelect();
+        System.out.println("The Black Shark has got the " + Weapon.getName() + " (+" + blackWeapon + " to its power in the first fight)\n");
 
-        FightRound fightMatch = new FightRound(figures.getWhiteShark(), figures.getBlackShark(), Weapon.weaponSelect(), Weapon.weaponSelect());
+        FightRound fightMatch = new FightRound(figures.getWhiteShark(), figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatch.fight();
 
         while (!figures.getWhiteTeam().isEmpty() && !figures.getBlackTeam().isEmpty()) {

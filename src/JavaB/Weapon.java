@@ -8,6 +8,11 @@ public class Weapon {
 
     private static String[] name = new String[] {"sand", "stone", "arbalest", "chopper", "grenade"};
     private static List<Skills> weapons = weaponList();
+    private static int weaponRandom;
+
+    public static String getName() {
+        return weapons.get(weaponRandom).name;
+    }
 
     private Weapon() {}
 
@@ -24,9 +29,10 @@ public class Weapon {
 
     public static int weaponSelect() {
         Random w = new Random();
-        int weaponRandom = w.nextInt(name.length);
-        System.out.println("The shark has got the " + weapons.get(weaponRandom).name + " (+" + weapons.get(weaponRandom).upgrade + ") to the first fight\n");
-         int upgradeWeapon = weapons.get(weaponRandom).upgrade;
+        weaponRandom = w.nextInt(name.length);
+        //System.out.println("The shark has got the " + weapons.get(weaponRandom).name +
+                //" (+" + weapons.get(weaponRandom).upgrade + ") to the power in the first fight\n");
+        int upgradeWeapon = weapons.get(weaponRandom).upgrade;
         return upgradeWeapon;
     }
 }

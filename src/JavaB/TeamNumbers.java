@@ -8,7 +8,7 @@ public class TeamNumbers {
         return numbers;
     }
 
-    public void start() {
+    public void selectNambers() {
 
         System.out.println("\nSelect numbers of members in each team: 3, 4, 5 or 0 (close)");
             numbers = Main.scanner.nextInt();
@@ -19,7 +19,7 @@ public class TeamNumbers {
                 System.out.println("The game starts...");
             } else {
                 System.out.println("Wrong choice! Try again!");
-                start();
+                selectNambers();
             }
     }
 }

@@ -48,17 +48,12 @@ public class Figures {
         }
     }
 
-    public void match() {
+    public void matchStart() {
         selectTeam();
         whiteTeam = sharksList;
-        int upgr1 = Weapon.weaponSelect();
-
-
         white();
-
         selectTeam();
         blackTeam = sharksList;
-        int upgr2 = Weapon.weaponSelect();
         black();
     }
 
@@ -71,7 +66,7 @@ public class Figures {
             }
         selectOpponent();
         whiteShark = whiteTeam.get(opponent);
-        System.out.println("You have chosen: White Shark " + whiteShark.id + "\n");
+        System.out.println("You have chosen: White Shark " + whiteShark.id);
     }
 
     public void black() {
@@ -94,7 +89,7 @@ public class Figures {
     }
 
     private void selectOpponent() {
-        System.out.println("\nChoose (with ROW number) one SHARK from the list: ");
+        System.out.println("\nChoose (with INDEX) one SHARK from the list: ");
         opponent = Main.scanner.nextInt() - 1;
         Main.scanner.nextLine();
     }
