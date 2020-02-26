@@ -13,18 +13,16 @@ public class Match {
         gameLogic();
 
         while (!figures.getWhiteTeam().isEmpty() && !figures.getBlackTeam().isEmpty()) {
-            figures.removeLoser();
-            if (figures.getBlackTeam().isEmpty()) {
-                System.out.println("\nWHITE TEAM has won! Our congradulations!!!");
-                break;
-            }
-            if (figures.getWhiteTeam().isEmpty()) {
-                System.out.println("\nBLACK TEAM has won! Our congradulations!!!");
-                break;
-            }
             figures.white();
             figures.black();
             gameLogic();
+        }
+
+        if (figures.getBlackTeam().isEmpty()) {
+            System.out.println("\nWHITE TEAM has won! Our congradulations!!!");
+        }
+        if (figures.getWhiteTeam().isEmpty()) {
+            System.out.println("\nBLACK TEAM has won! Our congradulations!!!");
         }
     }
 
@@ -35,5 +33,6 @@ public class Match {
         System.out.println("The Black Shark has got the " + Weapon.getName() + " (+" + blackWeapon + " to its power in the first fight)\n");
         FightRound fightMatchRest = new FightRound(figures.getWhiteShark(), figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatchRest.fight();
+        figures.removeLoser();
     }
 }

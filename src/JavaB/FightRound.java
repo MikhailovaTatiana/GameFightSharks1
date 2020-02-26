@@ -15,9 +15,11 @@ public class FightRound {
     }
 
     public void fight() {
-        System.out.println("White Shark " + whiteShark.id + " has life " + (whiteShark.life - upgrade2) + " now");
-        System.out.println("Black Shark " + blackShark.id + " has life " + (blackShark.life - upgrade1) + " now");
-            for (int i = 0; i < 5; i++) {
+        whiteShark.life = whiteShark.life - upgrade2;
+        blackShark.life = blackShark.life - upgrade1;
+        System.out.println("White Shark " + whiteShark.id + " has life " + whiteShark.life + " now");
+        System.out.println("Black Shark " + blackShark.id + " has life " + blackShark.life + " now");
+            for (int i = 0; i < 7; i++) {
                 if (whiteShark.life <= 0 || blackShark.life <= 0) {
                     break;
                 }
