@@ -2,10 +2,10 @@ package JavaB;
 
 public class FightRound {
 
-    Skills whiteShark;
-    Skills blackShark;
-    int upgrade1;
-    int upgrade2;
+    private Skills whiteShark;
+    private Skills blackShark;
+    private int upgrade1;
+    private int upgrade2;
 
     public FightRound(Skills whiteShark, Skills blackShark, int upgrade1, int upgrade2) {
         this.whiteShark = whiteShark;

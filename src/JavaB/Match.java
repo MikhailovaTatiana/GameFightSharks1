@@ -8,6 +8,7 @@ public class Match {
 
         TeamNumbers teamNumbers = new TeamNumbers();
         teamNumbers.selectNambers();
+
         figures.setNumberShark(teamNumbers.getNumbers());
         figures.matchStart();
         gameLogic();

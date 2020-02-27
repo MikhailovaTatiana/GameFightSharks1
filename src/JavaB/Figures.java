@@ -14,6 +14,8 @@ public class Figures {
     private int strengthRandom;
 
     private int opponent;
+    private int opponentWhite;
+    private int opponentBlack;
     private ArrayList<Skills> sharksList;
     private ArrayList<Skills> whiteTeam;
     private ArrayList<Skills> blackTeam;
@@ -66,6 +68,7 @@ public class Figures {
             }
         selectOpponent();
         whiteShark = whiteTeam.get(opponent);
+        opponentWhite = opponent;
         System.out.println("You have chosen: White Shark " + whiteShark.id);
     }
 
@@ -79,6 +82,7 @@ public class Figures {
             }
         selectOpponent();
         blackShark = blackTeam.get(opponent);
+        opponentBlack = opponent;
         System.out.println("You have chosen: Black Shark " + blackShark.id + "\n");
     }
 
@@ -97,10 +101,10 @@ public class Figures {
 
     public void removeLoser() {
         if (whiteShark.life <= 0) {
-            whiteTeam.remove(opponent);
+            whiteTeam.remove(opponentWhite);
         }
         if (blackShark.life <= 0) {
-            blackTeam.remove(opponent);
+            blackTeam.remove(opponentBlack);
         }
     }
 }
