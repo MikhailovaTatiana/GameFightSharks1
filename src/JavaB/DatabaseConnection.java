@@ -7,7 +7,7 @@ public class DatabaseConnection {
     private static DatabaseConnection instance;
     private Connection connection = null;
 
-    DatabaseConnection() throws SQLException {
+    private DatabaseConnection() throws SQLException {
         try {
             String url = "jdbc:mysql://localhost:3306/sakila" + "?serverTimezone=UTC";
             String username = "student";
@@ -22,7 +22,7 @@ public class DatabaseConnection {
         }
     }
 
-    public Connection getConnection() {
+    private Connection getConnection() {
         return connection;
     }
 
