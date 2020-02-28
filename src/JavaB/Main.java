@@ -13,6 +13,8 @@ public class Main {
 
         new Match();
 
+        LastHistories.getLastHistories();
+
         scanner.close();
     }
 }

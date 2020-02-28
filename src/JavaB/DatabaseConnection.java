@@ -9,11 +9,11 @@ public class DatabaseConnection {
 
     private DatabaseConnection() throws SQLException {
         try {
-            String url = "jdbc:mysql://localhost:3306/sakila" + "?serverTimezone=UTC";
+            String url = "jdbc:mysql://localhost:3306/sharks_fight" + "?serverTimezone=UTC";
             String username = "student";
             String password = "test123";
             connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection succeeded!");
+            System.out.println("\nConnection succeeded!");
         } catch(Exception e){
             e.printStackTrace();
         } finally{
