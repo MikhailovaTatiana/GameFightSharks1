@@ -14,9 +14,9 @@ public class DatabaseConnection {
             String password = "test123";
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connection succeeded!");
-        }catch(Exception e){
+        } catch(Exception e){
             e.printStackTrace();
-        }finally{
+        } finally{
             assert connection != null;
             connection.close();
         }

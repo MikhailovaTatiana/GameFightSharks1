@@ -67,6 +67,10 @@ public class Figures {
                 x++;
             }
         selectOpponent();
+        if (opponent > whiteTeam.size() - 1 || opponent < 0) {
+            System.out.println("Wrong choice! Try again!");
+            selectOpponent();
+        }
         whiteShark = whiteTeam.get(opponent);
         opponentWhite = opponent;
         System.out.println("You have chosen: White Shark " + whiteShark.id);
@@ -80,7 +84,10 @@ public class Figures {
                 System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
                 y++;
             }
-        selectOpponent();
+        selectOpponent();if (opponent > blackTeam.size() - 1 || opponent < 0) {
+            System.out.println("Wrong choice! Try again!");
+            selectOpponent();
+        }
         blackShark = blackTeam.get(opponent);
         opponentBlack = opponent;
         System.out.println("You have chosen: Black Shark " + blackShark.id + "\n");
