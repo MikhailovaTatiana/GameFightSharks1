@@ -1,10 +1,12 @@
 package JavaB;
 
+import java.sql.SQLException;
+
 public class Match {
 
     private Figures figures = new Figures();
 
-    public Match() {
+    public Match() throws SQLException {
 
         TeamNumbers teamNumbers = new TeamNumbers();
         teamNumbers.selectNambers();
@@ -27,11 +29,13 @@ public class Match {
         }
     }
 
-    private void gameLogic() {
+    private void gameLogic() throws SQLException {
         int whiteWeapon = Weapon.weaponSelect();
         System.out.println("The White Shark has got the " + Weapon.getName() + " (+" + whiteWeapon + " to its power in the first fight)\n");
+        DatabaseConnection.insertWeapon(); // Insert
         int blackWeapon = Weapon.weaponSelect();
         System.out.println("The Black Shark has got the " + Weapon.getName() + " (+" + blackWeapon + " to its power in the first fight)\n");
+        DatabaseConnection.insertWeapon(); // Insert
         FightRound fightMatchRest = new FightRound(figures.getWhiteShark(), figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatchRest.fight();
         figures.removeLoser();

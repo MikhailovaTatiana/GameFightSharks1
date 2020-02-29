@@ -5,7 +5,8 @@ import java.sql.*;
 public class DatabaseConnection {
 
     private static DatabaseConnection instance;
-    private Connection connection = null;
+    private static Connection connection;
+    //private Connection connection = null;
 
     private DatabaseConnection() throws SQLException {
         try {
@@ -18,7 +19,7 @@ public class DatabaseConnection {
             e.printStackTrace();
         } finally{
             assert connection != null;
-            connection.close();
+            //connection.close();
         }
     }
 
@@ -32,5 +33,11 @@ public class DatabaseConnection {
         } else if (instance.getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
+    }
+
+    public static void insertWeapon() throws SQLException {
+        PreparedStatement insertWeapon = connection.prepareStatement("insert into sharks (shark_weapon) value (?)");
+        insertWeapon.setString(1, Weapon.getName());
+        int rows = insertWeapon.executeUpdate();
     }
 }

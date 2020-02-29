@@ -80,7 +80,6 @@ public class Figures {
         System.out.println("\nBLACK SHARKS TEAM:");
         int y = 1;
             for (Skills rest : blackTeam) {
-
                 System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
                 y++;
             }

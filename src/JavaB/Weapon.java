@@ -30,8 +30,7 @@ public class Weapon {
     public static int weaponSelect() {
         Random w = new Random();
         weaponRandom = w.nextInt(name.length);
-        int upgradeWeapon = weapons.get(weaponRandom).upgrade;
-        return upgradeWeapon;
+        return weapons.get(weaponRandom).upgrade;
     }
 }
 
