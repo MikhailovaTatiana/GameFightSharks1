@@ -21,10 +21,11 @@ public class Match {
             gameLogic();
         }
 
-        if (figures.getBlackTeam().isEmpty()) {
+        if (figures.getBlackTeam().isEmpty() && figures.getWhiteTeam().isEmpty()) {
+            System.out.println("The match has ended in a draw!");
+        } else if (figures.getBlackTeam().isEmpty()) {
             System.out.println("\nWHITE TEAM has won! Our congradulations!!!");
-        }
-        if (figures.getWhiteTeam().isEmpty()) {
+        } else {
             System.out.println("\nBLACK TEAM has won! Our congradulations!!!");
         }
     }
@@ -36,7 +37,7 @@ public class Match {
         int blackWeapon = Weapon.weaponSelect();
         System.out.println("The Black Shark has got the " + Weapon.getName() + " (+" + blackWeapon + " to its power in the first fight)\n");
         DatabaseConnection.insertWeapon(); // Insert
-        FightRound fightMatchRest = new FightRound(figures.getWhiteShark(), figures.getBlackShark(), whiteWeapon, blackWeapon);
+        FightRound fightMatchRest = new FightRound(Figures.getWhiteShark(), Figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatchRest.fight();
         figures.removeLoser();
     }

@@ -10,11 +10,10 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         DatabaseConnection.getInstance();
-
         new Match();
-
         LastHistories.getLastHistories();
 
         scanner.close();
+
     }
 }

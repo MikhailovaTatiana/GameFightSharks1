@@ -23,7 +23,7 @@ public class DatabaseConnection {
         }
     }
 
-    private Connection getConnection() {
+    Connection getConnection() {
         return connection;
     }
 
@@ -35,9 +35,31 @@ public class DatabaseConnection {
         }
     }
 
+    static void insertWhiteShark() throws SQLException {
+        PreparedStatement insertWhiteShark = connection.prepareStatement("insert into sharks " +
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update) values (?, ?, ?, ?, ?, CURDATE())");
+        insertWhiteShark.setInt(1, Figures.getWhiteShark().id);
+        insertWhiteShark.setInt(2, Figures.getWhiteShark().life);
+        insertWhiteShark.setInt(3, Figures.getWhiteShark().power);
+        insertWhiteShark.setInt(4, Figures.getWhiteShark().strength);
+        insertWhiteShark.setString(5, "White");
+        insertWhiteShark.executeUpdate();
+    }
+
+    static void insertBlackShark() throws SQLException {
+        PreparedStatement insertBlackShark = connection.prepareStatement("insert into sharks " +
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update) values (?, ?, ?, ?, ?, CURDATE())");
+        insertBlackShark.setInt(1, Figures.getBlackShark().id);
+        insertBlackShark.setInt(2, Figures.getBlackShark().life);
+        insertBlackShark.setInt(3, Figures.getBlackShark().power);
+        insertBlackShark.setInt(4, Figures.getBlackShark().strength);
+        insertBlackShark.setString(5, "Black");
+        insertBlackShark.executeUpdate();
+    }
+
     public static void insertWeapon() throws SQLException {
         PreparedStatement insertWeapon = connection.prepareStatement("insert into sharks (shark_weapon) value (?)");
         insertWeapon.setString(1, Weapon.getName());
-        int rows = insertWeapon.executeUpdate();
+        insertWeapon.executeUpdate();
     }
 }
