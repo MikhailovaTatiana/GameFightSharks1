@@ -33,12 +33,18 @@ public class Match {
     private void gameLogic() throws SQLException {
         int whiteWeapon = Weapon.weaponSelect();
         System.out.println("The White Shark has got the " + Weapon.getName() + " (+" + whiteWeapon + " to its power in the fight)\n");
-        DatabaseConnection.insertWeaponWhite();
+        DatabaseConnection.setWeaponWhite();
         int blackWeapon = Weapon.weaponSelect();
         System.out.println("The Black Shark has got the " + Weapon.getName() + " (+" + blackWeapon + " to its power in the fight)\n");
-        DatabaseConnection.insertWeaponBlack();
+        DatabaseConnection.setWeaponBlack();
         FightRound fightMatchRest = new FightRound(Figures.getWhiteShark(), Figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatchRest.fight();
+        if (Figures.getWhiteShark().life > 1 && Figures.getBlackShark().life < 1) {
+            DatabaseConnection.setVictoryWhite();
+        } else if (Figures.getWhiteShark().life < 1 && Figures.getBlackShark().life > 1) {
+            DatabaseConnection.setVictoryBlack();
+        }
+
         figures.removeLoser();
     }
 }
