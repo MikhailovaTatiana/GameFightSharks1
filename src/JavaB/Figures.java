@@ -33,11 +33,11 @@ public class Figures {
         return blackShark;
     }
 
-    public ArrayList<Skills> getWhiteTeam() {
+    public static ArrayList<Skills> getWhiteTeam() {
         return whiteTeam;
     }
 
-    public ArrayList<Skills> getBlackTeam() {
+    public static ArrayList<Skills> getBlackTeam() {
         return blackTeam;
     }
 
@@ -56,21 +56,23 @@ public class Figures {
     public void matchStart() throws SQLException {
         selectTeam();
         whiteTeam = sharksList;
+        DatabaseConnection.insertWhiteSharks();
         white();
         selectTeam();
         blackTeam = sharksList;
+        DatabaseConnection.insertBlackSharks();
         black();
     }
 
-    public void white() throws SQLException {
+    public void white() {
         System.out.println("\nWHITE SHARKS TEAM:");
         int x = 1;
-            for (Skills rest : whiteTeam) {
-                System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + x + ")");
-                whiteShark = whiteTeam.get(x - 1);
-                DatabaseConnection.insertWhiteShark();
-                x++;
-            }
+        for (Skills rest : whiteTeam) {
+            System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + x + ")");
+            //whiteShark = whiteTeam.get(x - 1);
+            //DatabaseConnection.insertWhiteShark();
+            x++;
+        }
         selectOpponent();
         if (opponent > whiteTeam.size() - 1 || opponent < 0) {
             System.out.println("Wrong choice! Try again!");
@@ -81,16 +83,17 @@ public class Figures {
         System.out.println("You have chosen: White Shark " + whiteShark.id);
     }
 
-    public void black() throws SQLException {
+    public void black() {
         System.out.println("\nBLACK SHARKS TEAM:");
         int y = 1;
-            for (Skills rest : blackTeam) {
-                System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
-                blackShark = blackTeam.get(y - 1);
-                DatabaseConnection.insertBlackShark();
-                y++;
-            }
-        selectOpponent();if (opponent > blackTeam.size() - 1 || opponent < 0) {
+        for (Skills rest : blackTeam) {
+            System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
+            //blackShark = blackTeam.get(y - 1);
+            //DatabaseConnection.insertBlackShark();
+            y++;
+        }
+        selectOpponent();
+            if (opponent > blackTeam.size() - 1 || opponent < 0) {
             System.out.println("Wrong choice! Try again!");
             selectOpponent();
         }

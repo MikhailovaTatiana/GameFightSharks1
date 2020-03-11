@@ -2,10 +2,11 @@ package JavaB;
 
 import java.sql.*;
 
-public class DatabaseConnection {
+public class DatabaseConnection<lastMatchID> {
 
     private static DatabaseConnection instance;
     private static Connection connection;
+    private static int lastMatchID;
     //private Connection connection = null;
 
     private DatabaseConnection() throws SQLException {
@@ -17,13 +18,17 @@ public class DatabaseConnection {
             System.out.println("\nConnection succeeded!");
         } catch(Exception e){
             e.printStackTrace();
-        } finally{
+        } /*finally{
             assert connection != null;
-            //connection.close();
-        }
+        }*/
+        lastMatchID = matchNumber();
     }
 
-    Connection getConnection() {
+    public static void getClose() throws SQLException {
+        connection.close();
+    }
+
+    public Connection getConnection() {
         return connection;
     }
 
@@ -35,31 +40,63 @@ public class DatabaseConnection {
         }
     }
 
-    static void insertWhiteShark() throws SQLException {
-        PreparedStatement insertWhiteShark = connection.prepareStatement("insert into sharks " +
-                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update) values (?, ?, ?, ?, ?, CURDATE())");
-        insertWhiteShark.setInt(1, Figures.getWhiteShark().id);
-        insertWhiteShark.setInt(2, Figures.getWhiteShark().life);
-        insertWhiteShark.setInt(3, Figures.getWhiteShark().power);
-        insertWhiteShark.setInt(4, Figures.getWhiteShark().strength);
-        insertWhiteShark.setString(5, "White");
-        insertWhiteShark.executeUpdate();
+    private static int matchNumber() throws SQLException {
+        PreparedStatement matchID = connection.prepareStatement("SELECT match_id FROM matches order by match_id desc LIMIT 1");
+        ResultSet rs = matchID.executeQuery();
+        int id = 0;
+        while (rs.next()) {
+            id = rs.getInt(1);
+        }
+        return id + 1;
     }
 
-    static void insertBlackShark() throws SQLException {
-        PreparedStatement insertBlackShark = connection.prepareStatement("insert into sharks " +
-                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update) values (?, ?, ?, ?, ?, CURDATE())");
-        insertBlackShark.setInt(1, Figures.getBlackShark().id);
-        insertBlackShark.setInt(2, Figures.getBlackShark().life);
-        insertBlackShark.setInt(3, Figures.getBlackShark().power);
-        insertBlackShark.setInt(4, Figures.getBlackShark().strength);
-        insertBlackShark.setString(5, "Black");
-        insertBlackShark.executeUpdate();
+    public static void insertWhiteSharks() throws SQLException {
+        PreparedStatement insertWhiteShark = connection.prepareStatement("insert into matches " +
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update, match_id)" +
+                "values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP(), ?)");
+        for (int i = 0; i < Figures.getWhiteTeam().size(); i++) {
+            insertWhiteShark.setInt(1, Figures.getWhiteTeam().get(i).id);
+            insertWhiteShark.setInt(2, Figures.getWhiteTeam().get(i).life);
+            insertWhiteShark.setInt(3, Figures.getWhiteTeam().get(i).power);
+            insertWhiteShark.setInt(4, Figures.getWhiteTeam().get(i).strength);
+            insertWhiteShark.setString(5, "white");
+            insertWhiteShark.setInt(6, lastMatchID);
+            insertWhiteShark.executeUpdate();
+        }
     }
 
-    public static void insertWeapon() throws SQLException {
-        PreparedStatement insertWeapon = connection.prepareStatement("insert into sharks (shark_weapon) value (?)");
+    public static void insertBlackSharks() throws SQLException {
+        PreparedStatement insertBlackShark = connection.prepareStatement("insert into matches " +
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update, match_id) values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP(), ?)");
+        for (int i = 0; i < Figures.getBlackTeam().size(); i++) {
+            insertBlackShark.setInt(1, Figures.getBlackTeam().get(i).id);
+            insertBlackShark.setInt(2, Figures.getBlackTeam().get(i).life);
+            insertBlackShark.setInt(3, Figures.getBlackTeam().get(i).power);
+            insertBlackShark.setInt(4, Figures.getBlackTeam().get(i).strength);
+            insertBlackShark.setString(5, "black");
+            insertBlackShark.setInt(6, lastMatchID);
+            insertBlackShark.executeUpdate();
+        }
+
+    }
+
+    public static void insertWeaponWhite() throws SQLException {
+        PreparedStatement insertWeapon = connection.prepareStatement("update matches set weapon_name = ? " +
+                "where match_id = ? and team_name = ? and shark_number = ?");
         insertWeapon.setString(1, Weapon.getName());
+        insertWeapon.setInt(2, lastMatchID);
+        insertWeapon.setString(3, "white");
+        insertWeapon.setInt(4, Figures.getWhiteShark().id);
+        insertWeapon.executeUpdate();
+    }
+
+    public static void insertWeaponBlack() throws SQLException {
+        PreparedStatement insertWeapon = connection.prepareStatement("update matches set weapon_name = ? " +
+                "where match_id = ? and team_name = ? and shark_number = ?");
+        insertWeapon.setString(1, Weapon.getName());
+        insertWeapon.setInt(2, lastMatchID);
+        insertWeapon.setString(3, "black");
+        insertWeapon.setInt(4, Figures.getBlackShark().id);
         insertWeapon.executeUpdate();
     }
 }
