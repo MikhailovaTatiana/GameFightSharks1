@@ -6,7 +6,7 @@ public class DatabaseConnection<lastMatchID> {
 
     private static DatabaseConnection instance;
     private static Connection connection;
-    private static int lastMatchID;
+    public static int lastMatchID;
     //private Connection connection = null;
 
     private DatabaseConnection() throws SQLException {
@@ -132,6 +132,12 @@ public class DatabaseConnection<lastMatchID> {
         setVictory.setString(3, "black");
         setVictory.setInt(4, Figures.getWhiteShark().id);
         setVictory.executeUpdate();
+    }
+
+    public static void getHistory() throws SQLException {
+        PreparedStatement history = connection.prepareStatement("select * from matches where match_id = ?");
+        history.setInt(1, LastHistories.getChoice());
+        System.out.println(history.executeQuery());
     }
 }
 

@@ -39,12 +39,11 @@ public class Match {
         DatabaseConnection.setWeaponBlack();
         FightRound fightMatchRest = new FightRound(Figures.getWhiteShark(), Figures.getBlackShark(), whiteWeapon, blackWeapon);
         fightMatchRest.fight();
-        if (Figures.getWhiteShark().life > 1 && Figures.getBlackShark().life < 1) {
-            DatabaseConnection.setVictoryWhite();
-        } else if (Figures.getWhiteShark().life < 1 && Figures.getBlackShark().life > 1) {
-            DatabaseConnection.setVictoryBlack();
-        }
-
+            if (Figures.getWhiteShark().life > 1 && Figures.getBlackShark().life < 1) {
+                DatabaseConnection.setVictoryWhite();
+            } else if (Figures.getWhiteShark().life < 1 && Figures.getBlackShark().life > 1) {
+                DatabaseConnection.setVictoryBlack();
+            }
         figures.removeLoser();
     }
 }
