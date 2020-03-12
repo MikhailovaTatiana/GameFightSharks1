@@ -27,7 +27,7 @@ public class LastHistories {
         }
 
         if (input == 1) {
-            System.out.println("There are " + DatabaseConnection.lastMatchID + " matches in the database.\nWhich one do you want to see?");
+            System.out.println("There are " + DatabaseConnection.lastMatchID + " matches in the database.\n\nWhich one do you want to see?");
             choice = Main.scanner.nextInt();
             Main.scanner.nextLine();
                 if (choice > 0 && choice <= DatabaseConnection.lastMatchID) {

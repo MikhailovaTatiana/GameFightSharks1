@@ -137,7 +137,13 @@ public class DatabaseConnection<lastMatchID> {
     public static void getHistory() throws SQLException {
         PreparedStatement history = connection.prepareStatement("select * from matches where match_id = ?");
         history.setInt(1, LastHistories.getChoice());
-        System.out.println(history.executeQuery());
+        ResultSet lastHistories = history.executeQuery();
+        while(lastHistories.next()){
+            System.out.println(lastHistories.getString("match_id") + " " + lastHistories.getString("team_name") + " " +
+                    lastHistories.getString("shark_number") + " " + lastHistories.getString("shark_life") + " " +
+                    lastHistories.getString("shark_power") + " " + lastHistories.getString("shark_strength") + " " +
+                    lastHistories.getString("weapon_name") + " " + lastHistories.getString("victories"));
+        }
     }
 }
 
