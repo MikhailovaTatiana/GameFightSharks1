@@ -66,8 +66,7 @@ public class DatabaseConnection<lastMatchID> {
 
     public static void insertWhiteSharks() throws SQLException {
         PreparedStatement insertWhiteShark = connection.prepareStatement("insert into matches " +
-                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update, match_id)" +
-                "values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP(), ?)");
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, match_id) values (?, ?, ?, ?, ?, ?)");
         for (int i = 0; i < Figures.getWhiteTeam().size(); i++) {
             insertWhiteShark.setInt(1, Figures.getWhiteTeam().get(i).id);
             insertWhiteShark.setInt(2, Figures.getWhiteTeam().get(i).life);
@@ -81,7 +80,7 @@ public class DatabaseConnection<lastMatchID> {
 
     public static void insertBlackSharks() throws SQLException {
         PreparedStatement insertBlackShark = connection.prepareStatement("insert into matches " +
-                "(shark_number, shark_life, shark_power, shark_strength, team_name, last_update, match_id) values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP(), ?)");
+                "(shark_number, shark_life, shark_power, shark_strength, team_name, match_id) values (?, ?, ?, ?, ?, ?)");
         for (int i = 0; i < Figures.getBlackTeam().size(); i++) {
             insertBlackShark.setInt(1, Figures.getBlackTeam().get(i).id);
             insertBlackShark.setInt(2, Figures.getBlackTeam().get(i).life);
@@ -139,10 +138,14 @@ public class DatabaseConnection<lastMatchID> {
         history.setInt(1, LastHistories.getChoice());
         ResultSet lastHistories = history.executeQuery();
         while(lastHistories.next()){
-            System.out.println(lastHistories.getString("match_id") + " " + lastHistories.getString("team_name") + " " +
-                    lastHistories.getString("shark_number") + " " + lastHistories.getString("shark_life") + " " +
-                    lastHistories.getString("shark_power") + " " + lastHistories.getString("shark_strength") + " " +
-                    lastHistories.getString("weapon_name") + " " + lastHistories.getString("victories"));
+            System.out.println("match: " + lastHistories.getString("match_id") + ", " +
+                    lastHistories.getString("team_name") + " shark " +
+                    lastHistories.getString("shark_number") + ", life: " +
+                    lastHistories.getString("shark_life") + ", power: " +
+                    lastHistories.getString("shark_power") + ", strength: " +
+                    lastHistories.getString("shark_strength") + ", with " +
+                    lastHistories.getString("weapon_name") + " has won " +
+                    lastHistories.getString("victories") + " time/s");
         }
     }
 }

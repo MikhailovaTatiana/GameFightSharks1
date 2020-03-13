@@ -1,4 +1,4 @@
-package JUnitsTests;
+package JUnitTests;
 
 import JavaB.DatabaseConnection;
 import org.junit.jupiter.api.AfterEach;

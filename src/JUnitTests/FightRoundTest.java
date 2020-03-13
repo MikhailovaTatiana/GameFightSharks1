@@ -1,6 +1,4 @@
-package JUnitsTests;
-
-import static org.junit.jupiter.api.Assertions.*;
+package JUnitTests;
 
 class FightRoundTest {
 
