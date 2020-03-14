@@ -11,7 +11,7 @@ public class Main {
 
         DatabaseConnection.getInstance();
         new Match();
-        LastHistories.getLastHistories();
+        Histories.getLastHistories();
 
         scanner.close();
         DatabaseConnection.getClose();

@@ -2,12 +2,11 @@ package JavaB;
 
 import java.sql.*;
 
-public class DatabaseConnection<lastMatchID> {
+public class DatabaseConnection {
 
-    private static DatabaseConnection instance;
-    private static Connection connection;
+    private static DatabaseConnection instance = null;
+    private static Connection connection = null;
     public static int lastMatchID;
-    //private Connection connection = null;
 
     private DatabaseConnection() throws SQLException {
         try {
@@ -18,9 +17,9 @@ public class DatabaseConnection<lastMatchID> {
             System.out.println("\nConnection succeeded!");
         } catch(Exception e){
             e.printStackTrace();
-        } /*finally{
+        } finally{
             assert connection != null;
-        }*/
+        }
         lastMatchID = matchNumber();
     }
 
@@ -135,17 +134,17 @@ public class DatabaseConnection<lastMatchID> {
 
     public static void getHistory() throws SQLException {
         PreparedStatement history = connection.prepareStatement("select * from matches where match_id = ?");
-        history.setInt(1, LastHistories.getChoice());
+        history.setInt(1, Histories.getChoice());
         ResultSet lastHistories = history.executeQuery();
         while(lastHistories.next()){
             System.out.println("match: " + lastHistories.getString("match_id") + ", " +
-                    lastHistories.getString("team_name") + " shark " +
-                    lastHistories.getString("shark_number") + ", life: " +
-                    lastHistories.getString("shark_life") + ", power: " +
-                    lastHistories.getString("shark_power") + ", strength: " +
-                    lastHistories.getString("shark_strength") + ", with " +
-                    lastHistories.getString("weapon_name") + " has won " +
-                    lastHistories.getString("victories") + " time/s");
+                    lastHistories.getString("team_name") +
+                    " shark " + lastHistories.getString("shark_number") +
+                    ", life: " + lastHistories.getString("shark_life") +
+                    ", power: " + lastHistories.getString("shark_power") +
+                    ", strength: " + lastHistories.getString("shark_strength") +
+                    ", with " + lastHistories.getString("weapon_name") +
+                    " has won " + lastHistories.getString("victories") + " time/s");
         }
     }
 }

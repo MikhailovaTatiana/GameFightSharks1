@@ -1,17 +1,17 @@
 package JUnitTests;
 
-import JavaB.LastHistories;
+import JavaB.Histories;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-class LastHistoriesTest {
+class HistoriesTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        LastHistories.getLastHistories();
+        Histories.getLastHistories();
     }
 
     @AfterEach

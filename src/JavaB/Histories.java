@@ -2,19 +2,19 @@ package JavaB;
 
 import java.sql.SQLException;
 
-public class LastHistories {
+public class Histories {
 
     private static int choice;
 
     public static void getLastHistories() throws SQLException {
-        new LastHistories();
+        new Histories();
     }
 
     public static int getChoice() {
         return choice;
     }
 
-    private LastHistories() throws SQLException {
+    private Histories() throws SQLException {
         System.out.println("\nDo you want to see some history? Select number: 1 (yes), 0 (no)");
         int input = Main.scanner.nextInt();
         Main.scanner.nextLine();
@@ -23,7 +23,7 @@ public class LastHistories {
         }
         if (input > 1 || input < 0) {
             System.out.println("Wrong choce! White again!");
-            new LastHistories();
+            new Histories();
         }
 
         if (input == 1) {
@@ -33,7 +33,7 @@ public class LastHistories {
                 if (choice > 0 && choice <= DatabaseConnection.lastMatchID) {
                     DatabaseConnection.getHistory();
                 }
-            new LastHistories();
+            new Histories();
         }
     }
 }
