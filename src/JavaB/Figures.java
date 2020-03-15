@@ -6,23 +6,24 @@ import java.util.Random;
 
 public class Figures {
 
-    private int numberShark;
+    public static int numberShark;
     private static Skills whiteShark;
     private static Skills blackShark;
 
-    private int lifeRandom;
-    private int powerRandom;
-    private int strengthRandom;
+    private static int lifeRandom;
+    private static int powerRandom;
+    private static int strengthRandom;
 
     private int opponent;
     private int opponentWhite;
     private int opponentBlack;
-    private ArrayList<Skills> sharksList;
+    private static ArrayList<Skills> sharksList;
     private static ArrayList<Skills> whiteTeam;
     private static ArrayList<Skills> blackTeam;
 
-    public void setNumberShark(int numberShark) {
-        this.numberShark = numberShark;
+    public static int setNumberShark(int numberShark) {
+        Figures.numberShark = numberShark;
+        return numberShark;
     }
 
     public static Skills getWhiteShark() {
@@ -41,9 +42,11 @@ public class Figures {
         return blackTeam;
     }
 
-    //public Figures() {}
+    public static ArrayList<Skills> getTeamCreation() {
+        return Figures.selectTeam();
+    }
 
-    private void selectTeam() {
+    private static ArrayList<Skills> selectTeam() {
         sharksList = new ArrayList<>(numberShark);
         for (int i = 0; i < numberShark; i++) {
             random();
@@ -51,6 +54,7 @@ public class Figures {
             Skills shark = new Skills(idShark, lifeRandom, powerRandom, strengthRandom);
             sharksList.add(i, shark);
         }
+        return sharksList;
     }
 
     public void matchStart() throws SQLException {
@@ -69,8 +73,6 @@ public class Figures {
         int x = 1;
         for (Skills rest : whiteTeam) {
             System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + x + ")");
-            //whiteShark = whiteTeam.get(x - 1);
-            //DatabaseConnection.insertWhiteShark();
             x++;
         }
         selectOpponent();
@@ -88,8 +90,6 @@ public class Figures {
         int y = 1;
         for (Skills rest : blackTeam) {
             System.out.println("Shark " + rest.id + ": life " + rest.life + ", power " + rest.power + ", strength " + rest.strength + " (index " + y + ")");
-            //blackShark = blackTeam.get(y - 1);
-            //DatabaseConnection.insertBlackShark();
             y++;
         }
         selectOpponent();
@@ -102,7 +102,7 @@ public class Figures {
         System.out.println("You have chosen: Black Shark " + blackShark.id + "\n");
     }
 
-    private void random() {
+    private static void random() {
         Random random = new Random();
         lifeRandom = random.nextInt(50) + 100;
         powerRandom = random.nextInt(15) + 10;

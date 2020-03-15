@@ -11,40 +11,54 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseConnectionTest {
 
-    private static DatabaseConnection instance;
-
     @BeforeEach
     void setUp() throws SQLException {
         DatabaseConnection.getInstance();
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws SQLException {
+        DatabaseConnection.getClose();
+    }
+
+    @Test
+    void getClose() {
     }
 
     @Test
     void getConnection() {
-        assertNotNull(instance.getConnection());
     }
 
     @Test
-    void getInstance() {
-        assertNotNull(instance);
+    void getInstance() throws SQLException {
+        assertNotNull(DatabaseConnection.getInstance());
     }
 
     @Test
-    void insertShark() {
+    void insertWhiteSharks() {
     }
 
     @Test
-    void insertWhiteShark() {
+    void insertBlackSharks() {
     }
 
     @Test
-    void insertBlackShark() {
+    void setWeaponWhite() {
     }
 
     @Test
-    void insertWeapon() {
+    void setWeaponBlack() {
+    }
+
+    @Test
+    void setVictoryWhite() {
+    }
+
+    @Test
+    void setVictoryBlack() {
+    }
+
+    @Test
+    void getHistory() {
     }
 }

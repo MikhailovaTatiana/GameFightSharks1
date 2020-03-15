@@ -17,8 +17,6 @@ public class DatabaseConnection {
             System.out.println("\nConnection succeeded!");
         } catch(Exception e){
             e.printStackTrace();
-        } finally{
-            assert connection != null;
         }
         lastMatchID = matchNumber();
     }
@@ -27,16 +25,17 @@ public class DatabaseConnection {
         connection.close();
     }
 
-    public Connection getConnection() {
+    private static Connection getConnection() {
         return connection;
     }
 
-    public static void getInstance() throws SQLException {
+    public static DatabaseConnection getInstance() throws SQLException {
         if (instance == null) {
             instance = new DatabaseConnection();
-        } else if (instance.getConnection().isClosed()) {
+        } else if (getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
+        return instance;
     }
 
     private static int matchNumber() throws SQLException {
