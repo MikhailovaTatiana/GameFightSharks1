@@ -8,12 +8,15 @@ public class DatabaseConnection {
     private static Connection connection = null;
     public static int lastMatchID;
 
+    public static String getPassword(String password) {
+        return password;
+    }
+
     private DatabaseConnection() throws SQLException {
         try {
             String url = "jdbc:mysql://localhost:3306/sharks_fight" + "?serverTimezone=UTC";
             String username = "student";
-            String password = "test123";
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, username, getPassword("test123"));
             System.out.println("\nConnection succeeded!");
         } catch(Exception e){
             e.printStackTrace();
@@ -21,11 +24,17 @@ public class DatabaseConnection {
         lastMatchID = matchNumber();
     }
 
-    public static void getClose() throws SQLException {
-        connection.close();
+    public static boolean dbClose() throws SQLException {
+        try {
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 
@@ -147,4 +156,3 @@ public class DatabaseConnection {
         }
     }
 }
-

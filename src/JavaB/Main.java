@@ -14,6 +14,6 @@ public class Main {
         Histories.getLastHistories();
 
         scanner.close();
-        DatabaseConnection.getClose();
+        DatabaseConnection.dbClose();
     }
 }

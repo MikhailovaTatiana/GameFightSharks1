@@ -1,64 +1,28 @@
 package JUnitTests;
 
 import JavaB.DatabaseConnection;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DatabaseConnectionTest {
+public class DatabaseConnectionTest {
 
-    @BeforeEach
-    void setUp() throws SQLException {
-        DatabaseConnection.getInstance();
-    }
+    private DatabaseConnection databaseConnection;
 
-    @AfterEach
-    void tearDown() throws SQLException {
-        DatabaseConnection.getClose();
+    @Before
+    public void setUp() throws SQLException {
+        databaseConnection = DatabaseConnection.getInstance();
     }
 
     @Test
-    void getClose() {
+    public void dbClose() throws SQLException {
+        assertTrue(databaseConnection.dbClose());
     }
 
     @Test
-    void getConnection() {
-    }
-
-    @Test
-    void getInstance() throws SQLException {
-        assertNotNull(DatabaseConnection.getInstance());
-    }
-
-    @Test
-    void insertWhiteSharks() {
-    }
-
-    @Test
-    void insertBlackSharks() {
-    }
-
-    @Test
-    void setWeaponWhite() {
-    }
-
-    @Test
-    void setWeaponBlack() {
-    }
-
-    @Test
-    void setVictoryWhite() {
-    }
-
-    @Test
-    void setVictoryBlack() {
-    }
-
-    @Test
-    void getHistory() {
+    public void getInstance() throws SQLException {
+        assertNotNull(databaseConnection.getInstance());
     }
 }
